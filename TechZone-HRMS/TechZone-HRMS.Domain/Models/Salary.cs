@@ -8,6 +8,7 @@ namespace TechZone_HRMS.Domain
     public partial class Salary
     {
         public int SalaryId { get; set; }
+        public DateTime SalaryDate { get; set; }
         public int LabourContractSalary { get; set; }
         public int MonthsWorkday { get; set; }
         public int TotalWorkday { get; set; }

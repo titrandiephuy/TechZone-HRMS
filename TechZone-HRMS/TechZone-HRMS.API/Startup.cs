@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using TechZone_HRMS.Domain;
 using TechZone_HRMS.Service.DepartmentServices;
 using TechZone_HRMS.Service.EmployeeServices;
+using TechZone_HRMS.Service.SalaryServices;
 
 namespace TechZone_HRMS.API
 {
@@ -28,6 +29,7 @@ namespace TechZone_HRMS.API
             services.AddDbContext<EmployeesManagementContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EmployeesManagementDbConnection")));
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<ISalaryService, SalaryService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TechZone_HRMS.API", Version = "v1" });
