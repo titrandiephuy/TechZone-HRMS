@@ -39,5 +39,11 @@ namespace TechZone_HRMS.API.Controllers
         {
             return await salaryService.GetSalaryById(id);
         }
+
+        [HttpPut]
+        public async Task<ActionResult<Result>> EditSalary(EditSalary editSalary)
+        {
+            return await salaryService.EditSalary(editSalary);
+        }
     }
 }

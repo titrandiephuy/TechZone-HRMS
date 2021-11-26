@@ -110,6 +110,94 @@ namespace TechZone_HRMS.Service.SalaryServices
             }
         }
 
+        public async Task<ActionResult<Result>> EditSalary(EditSalary editSalary)
+        {
+            var result = new Result()
+            {
+                Success = false,
+                Message = "Something went wrong please try again!"
+            };
+
+            try
+            {
+                double basic = 0;
+                if (editSalary.MonthsWorkday == editSalary.TotalWorkday)
+                {
+                    basic = editSalary.LabourContractSalary;
+                }
+                else if (editSalary.MonthsWorkday != editSalary.TotalWorkday)
+                {
+                    basic = ((editSalary.LabourContractSalary / editSalary.MonthsWorkday) * editSalary.TotalWorkday);
+                }
+
+                var bonus = (editSalary.LunchAllowance + editSalary.MobilePhoneAllowance + editSalary.ConveyanceAllowance + editSalary.PerformanceBonus);
+
+                var social = ((editSalary.LabourContractSalary * 10.5) / 100);
+
+                var gross = (((editSalary.LabourContractSalary / editSalary.MonthsWorkday) * editSalary.TotalWorkday) + (editSalary.LunchAllowance + editSalary.MobilePhoneAllowance + editSalary.ConveyanceAllowance + editSalary.PerformanceBonus));
+
+                var salarytotal = gross - editSalary.LunchAllowance - social;
+
+                double tax = 0;
+
+                if (salarytotal > 80000000)
+                {
+                    tax = (salarytotal * 35) / 100;
+                }
+                else if (52000000 < salarytotal && salarytotal <= 80000000)
+                {
+                    tax = (salarytotal * 30) / 100;
+                }
+                else if (32000000 < salarytotal && salarytotal <= 52000000)
+                {
+                    tax = (salarytotal * 25) / 100;
+                }
+                else if (18000000 < salarytotal && salarytotal <= 32000000)
+                {
+                    tax = (salarytotal * 20) / 100;
+                }
+                else if (10000000 < salarytotal && salarytotal <= 18000000)
+                {
+                    tax = (salarytotal * 15) / 100;
+                }
+                else if (5000000 < salarytotal && salarytotal <= 10000000)
+                {
+                    tax = (salarytotal * 10) / 100;
+                }
+                else if (salarytotal <= 5000000)
+                {
+                    tax = (salarytotal * 5) / 100;
+                }
+                var salary = await context.Salaries.FirstOrDefaultAsync(s => s.SalaryId == editSalary.SalaryId);
+                salary.SalaryDate = editSalary.SalaryDate;
+                salary.LabourContractSalary = editSalary.LabourContractSalary;
+                salary.MonthsWorkday = editSalary.MonthsWorkday;
+                salary.TotalWorkday = editSalary.TotalWorkday;
+                salary.BasicSalary = basic;
+                salary.LunchAllowance = editSalary.LunchAllowance;
+                salary.MobilePhoneAllowance = editSalary.MobilePhoneAllowance;
+                salary.ConveyanceAllowance = editSalary.ConveyanceAllowance;
+                salary.PerformanceBonus = editSalary.PerformanceBonus;
+                salary.TotalBonus = bonus;
+                salary.SocialInsurance = social;
+                salary.NetSalary = gross - tax - social;
+                salary.PersonalIncomeTax = tax;
+                salary.GrossSalary = gross;
+
+
+                if (await context.SaveChangesAsync() > 0)
+                {
+                    result.Success = true;
+                    result.Message = "Salary edited successfully";
+                };
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return result;
+            }
+        }
+
         public async Task<IEnumerable<SalaryDetail>> GetSalary()
         {
             return (await context.Salaries.ToListAsync()).Select(s => new SalaryDetail()
