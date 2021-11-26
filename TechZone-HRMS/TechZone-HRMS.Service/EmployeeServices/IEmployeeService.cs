@@ -16,5 +16,6 @@ namespace TechZone_HRMS.Service.EmployeeServices
         Task<ActionResult<Result>> EditEmployee(EditEmployee editEmployee);
         Task<ActionResult<Result>> CreateEmployee(CreateEmployee createEmployee);
         Task<IActionResult> DeleteEmployee(int id);
+        Task<ActionResult<EmployeeShow>> GetEmployeeByIdShow(int id);
     }
 }

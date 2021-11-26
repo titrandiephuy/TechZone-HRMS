@@ -50,5 +50,10 @@ namespace TechZone_HRMS.API.Controllers
         {
             return await employeeService.EditEmployee(editEmployee);
         }
+        [HttpGet("GetEmployeeByIdShow/{id}")]
+        public async Task<ActionResult<EmployeeShow>> GetEmployeeByIdShow(int id)
+        {
+            return await employeeService.GetEmployeeByIdShow(id);
+        }
     }
 }

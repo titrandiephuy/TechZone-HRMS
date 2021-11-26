@@ -146,6 +146,34 @@ namespace TechZone_HRMS.Service.EmployeeServices
             return employeeDetail;
         }
 
+        public async Task<ActionResult<EmployeeShow>> GetEmployeeByIdShow(int id)
+        {
+            var employee = await context.Employees.FirstOrDefaultAsync(e => e.EmployeeId == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            var employeeShow = new EmployeeShow();
+            employeeShow.EmployeeId = employee.EmployeeId;
+            employeeShow.FirstName = employee.FirstName;
+            employeeShow.LastName = employee.LastName;
+            employeeShow.Gender = employee.Gender;
+            employeeShow.EmployeePhoneNumber = employee.EmployeePhoneNumber;
+            employeeShow.Email = employee.Email;
+            employeeShow.EmployeeAddress = employee.EmployeeAddress;
+            employeeShow.DateOfBirth = employee.DateOfBirth;
+            employeeShow.PlaceOfOrigin = employee.PlaceOfOrigin;
+            employeeShow.Ethnicity = employee.Ethnicity;
+            employeeShow.JoinDate = employee.JoinDate;
+            employeeShow.EmployeeAvatar = employeeShow.EmployeeAvatar;
+            employeeShow.DepartmentId = employee.DepartmentId;
+            employeeShow.EducationLevelId = employee.EducationLevelId;
+            employeeShow.EmployeeStatus = employee.EmployeeStatus;
+
+            return employeeShow;
+        }
+
         public async Task<IEnumerable<EmployeeDetail>> GetEmployees()
         {
             return (await context.Employees.Include(em => em.Department).Include(em => em.EducationLevel).ToListAsync()).Select(e => new EmployeeDetail()
