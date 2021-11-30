@@ -19,4 +19,10 @@
     <ProjectReference Include="..\TechZone-HRMS.Service\TechZone-HRMS.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Salary\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Salary\" />
+  </ItemGroup>
 </Project>

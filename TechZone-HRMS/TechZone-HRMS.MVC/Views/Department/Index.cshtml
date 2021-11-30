@@ -1,0 +1,81 @@
+﻿@{ ViewData["Title"] = "Salary"; }
+<div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Department</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Department</li>
+                </ul>
+            </div>
+            <div class="col-auto float-right ml-auto">
+                <a href="javascript:;" class="btn add-btn" onclick="department.openModal()"><i class="fa fa-plus"></i> Add Department</a>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <table id="tbDepartment" class="table table-striped custom-table mb-0">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">#</th>
+                            <th>Department Name</th>
+                            <th>Phone Number</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Department Modal -->
+<div id="addDepartment" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Department</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formDepartment" method="post">
+                    <div class="form-group">
+                        <label>Department Name <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" data-rule-required="true" id="departmentName" name="DepartmentName" data-msg-required="Department Name is required">
+                        <input type="hidden" name="departmentId" id="departmentId" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Department Phone Number <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" id="departmentPhoneNumber" data-rule-required="true" data-msg-required="Department phone number is required" name="DepartmentPhoneNumber">
+                    </div>
+                    <div class="form-group">
+                        <label>Department Location <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" id="departmentLocation" data-rule-required="true" data-msg-required="Department location is required" name="DepartmentLocation">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" id="departmentStatus" class="form-check-input" data-rule-required="true" data-msg-required=" Department status is required" name="Status"> Trạng Thái
+                        </label>
+                    </div>
+                </form>
+                <div class="submit-section">
+                    <a href="javascript:;" onclick="department.save()" id="btnSave" class="btn btn-primary submit-btn">Submit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Department Modal -->
+@section scripts {
+    <script src="js/Department.js" asp-append-version="true"></script>
+}
