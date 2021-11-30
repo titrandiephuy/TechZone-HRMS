@@ -1,12 +1,15 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using TechZone_HRMS.Domain.Models;
 
 #nullable disable
 
 namespace TechZone_HRMS.Domain
 {
-    public partial class EmployeesManagementContext : DbContext
+    public partial class EmployeesManagementContext : IdentityDbContext<AppIdentityUser, IdentityRole, string>
     {
         public EmployeesManagementContext()
         {
@@ -36,6 +39,15 @@ namespace TechZone_HRMS.Domain
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Department>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<EducationLevel>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<Employee>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<InCharge>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<Leaves>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<Position>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<Salary>().Metadata.SetIsTableExcludedFromMigrations(true);
+
+            base.OnModelCreating(modelBuilder);
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<Department>(entity =>
