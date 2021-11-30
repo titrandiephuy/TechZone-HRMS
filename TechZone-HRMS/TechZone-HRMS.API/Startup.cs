@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TechZone_HRMS.Domain;
+using TechZone_HRMS.Domain.Models;
 using TechZone_HRMS.Service.DepartmentServices;
 using TechZone_HRMS.Service.EmployeeServices;
 using TechZone_HRMS.Service.SalaryServices;
@@ -34,6 +36,7 @@ namespace TechZone_HRMS.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TechZone_HRMS.API", Version = "v1" });
             });
+            services.AddIdentity<AppIdentityUser, IdentityRole>().AddEntityFrameworkStores<EmployeesManagementContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
