@@ -11,6 +11,26 @@
                     <li class="breadcrumb-item active">Employee</li>
                 </ul>
             </div>
+            <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+                <div class="container">
+                    <form method="post" asp-controller="Employee" asp-action="ImportEmployee" enctype="multipart/form-data">
+                        <input type="file" name="file" />
+                        <button type="submit">Import</button>
+                    </form>
+                </div>
+            </div>
+            <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+                <div class="container">
+                    <form method="get" asp-controller="Employee" asp-action="ExportEmployee" enctype="multipart/form-data">
+                        <button type="submit">Export</button>
+                    </form>
+                </div>
+                <div class="container">
+                    <form method="get" asp-controller="Employee" asp-action="ExportPatternEmployee" enctype="multipart/form-data">
+                        <button type="submit">Export Pattern</button>
+                    </form>
+                </div>
+            </div>
             <div class="col-auto float-right ml-auto">
                 <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
                 <div class="view-icons">
