@@ -15,6 +15,7 @@ namespace TechZone_HRMS.Service.DepartmentServices
         Task<ActionResult<DepartmentDetail>> GetDepartmentById(int id);
         Task<ActionResult<Result>> EditDepartment(DepartmentDetail editdepartment);
         Task<ActionResult<Result>> CreateDepartment(CreateDepartment create);
-        Task<IActionResult> DeleteDepartment(int id);
-    }
+        Task<IActionResult> ChangeStatusDepartment(int id);
+        Task<ActionResult<Result>> DeleteDepartment(int id);
+     }
 }
