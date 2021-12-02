@@ -45,9 +45,15 @@ namespace TechZone_HRMS.API.Controllers
             return await departmentService.EditDepartment(editdepartment);
         }
         [HttpPatch]
-        public async Task<IActionResult> DeleteDepartment(int id)
+        public async Task<IActionResult> ChangeStatusDepartment(int id)
+        {
+            return await departmentService.ChangeStatusDepartment(id);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Result>> DeleteDepartment (int id)
         {
             return await departmentService.DeleteDepartment(id);
         }
+
     }
 }
