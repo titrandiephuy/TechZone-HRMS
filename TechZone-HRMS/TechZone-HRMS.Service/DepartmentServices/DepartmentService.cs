@@ -115,7 +115,7 @@ namespace TechZone_HRMS.Service.DepartmentServices
         }
 
         // DELETE: api/Departments/5
-        public async Task<IActionResult> DeleteDepartment(int id)
+        public async Task<IActionResult> ChangeStatusDepartment(int id)
         {
             var department = await context.Departments.FindAsync(id);
             if (department == null)
@@ -129,5 +129,29 @@ namespace TechZone_HRMS.Service.DepartmentServices
 
             return NoContent();
         }
+        public async Task<ActionResult<Result>> DeleteDepartment(int id)
+        {
+            var result = new Result()
+            {
+                Success = false,
+                Message = "Something went wrong please try again!"
+            };
+            try
+            {
+                var department = await context.Departments.FindAsync(id);
+                context.Remove(department);
+                if (await context.SaveChangesAsync() > 0)
+                {
+                    result.Success = true;
+                    result.Message = "Department deleted successfully";
+                };
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return result;
+            }
+        }
+
     }
 }
