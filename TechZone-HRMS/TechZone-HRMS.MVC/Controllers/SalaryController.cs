@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TechZone_HRMS.Service.EmployeeServices;
+using TechZone_HRMS.Service.EmployeeServices.EmployeeModel;
 using TechZone_HRMS.Service.SalaryServices;
 
 namespace TechZone_HRMS.MVC.Controllers
@@ -12,6 +13,7 @@ namespace TechZone_HRMS.MVC.Controllers
     {
         private readonly ISalaryService salaryService;
         private readonly IEmployeeService employeeService;
+        private static EmployeeDetail employee = new EmployeeDetail();
 
         // GET: /<controller>/
         public SalaryController(ISalaryService salaryService, IEmployeeService employeeService)
@@ -36,11 +38,11 @@ namespace TechZone_HRMS.MVC.Controllers
             return View(data);
         }
         [HttpGet]
-        [Route("/Salary/Payslip/{salId}")]
-        public async Task<IActionResult> Payslip(int salId)
+        [Route("/Salary/Payslip/{empId}/{salId}")]
+        public async Task<IActionResult> Payslip(int salId, int empId)
         {
-            var data = await salaryService.GetSalaryById(salId);
-            return View(data);
+            var data = await salaryService.GetSalaryById(empId);
+            return View(data.Where(sal => sal.SalaryId == salId));
         }
     }
 }
