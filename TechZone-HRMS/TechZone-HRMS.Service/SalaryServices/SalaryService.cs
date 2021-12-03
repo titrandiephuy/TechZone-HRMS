@@ -225,5 +225,36 @@ namespace TechZone_HRMS.Service.SalaryServices
         {
             return await context.Salaries.Where(s => s.EmployeeId == id).ToListAsync();
         }
+
+        public async Task<ActionResult<SalaryDetail>> GetSalaryDetailById(int id)
+        {
+            var salary = await context.Salaries.FirstOrDefaultAsync(sa => sa.SalaryId == id);
+            if (salary == null)
+            {
+                return NotFound();
+            }
+
+            SalaryDetail salaryDetail = new SalaryDetail()
+            {
+                SalaryId = salary.SalaryId,
+                SalaryDate = salary.SalaryDate,
+                LabourContractSalary = salary.LabourContractSalary,
+                MonthsWorkday = salary.MonthsWorkday,
+                TotalWorkday = salary.TotalWorkday,
+                BasicSalary = salary.BasicSalary,
+                TotalBonus = salary.TotalBonus,
+                LunchAllowance = salary.LunchAllowance,
+                MobilePhoneAllowance = salary.MobilePhoneAllowance,
+                ConveyanceAllowance = salary.ConveyanceAllowance,
+                PerformanceBonus = salary.PerformanceBonus,
+                SocialInsurance = salary.SocialInsurance,
+                PersonalIncomeTax = salary.PersonalIncomeTax,
+                NetSalary = salary.NetSalary,
+                GrossSalary = salary.GrossSalary,
+                EmployeeId = salary.EmployeeId
+
+            };
+            return salaryDetail;
+        }
     }
 }
