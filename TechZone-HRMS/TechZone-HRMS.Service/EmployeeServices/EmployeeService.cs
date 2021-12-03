@@ -197,5 +197,35 @@ namespace TechZone_HRMS.Service.EmployeeServices
             }
             );
         }
+
+    public async   Task<EmployeeDetail> GetEmployeeByIdd(int id)
+        {
+           var employee = await context.Employees.Include(em => em.Department).Include(em => em.EducationLevel).FirstOrDefaultAsync(e => e.EmployeeId == id);
+
+            if (employee == null)
+            {
+                return null;
+            }
+
+            var employeeDetail = new EmployeeDetail();
+            employeeDetail.EmployeeId = employee.EmployeeId;
+            employeeDetail.FirstName = employee.FirstName;
+            employeeDetail.LastName = employee.LastName;
+            employeeDetail.Gender = employee.Gender;
+            employeeDetail.EmployeePhoneNumber = employee.EmployeePhoneNumber;
+            employeeDetail.Email = employee.Email;
+            employeeDetail.EmployeeAddress = employee.EmployeeAddress;
+            employeeDetail.DateOfBirth = employee.DateOfBirth;
+            employeeDetail.PlaceOfOrigin = employee.PlaceOfOrigin;
+            employeeDetail.Ethnicity = employee.Ethnicity;
+            employeeDetail.JoinDate = employee.JoinDate;
+            employeeDetail.EmployeeAvatar = employee.EmployeeAvatar;
+            employeeDetail.DepartmentName = employee.Department.DepartmentName;
+            employeeDetail.Degree = employee.EducationLevel.Degree;
+            employeeDetail.Major = employee.EducationLevel.Major;
+            employeeDetail.EmployeeStatus = employee.EmployeeStatus;
+
+            return employeeDetail;
+        }
     }
 }

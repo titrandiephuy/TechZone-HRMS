@@ -15,10 +15,15 @@ namespace TechZone_HRMS.MVC.Controllers
         {
             this.service = service;
         }
-        // GET: /<controller>/
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        [Route("/Department/Get")]
+        public async Task<IActionResult> Get()
         {
-            var departments = await service.GetDepartments();
+            var data = await service.GetDepartments();
+            return Ok(data);
+        }
+        public IActionResult Index()
+        {
             return View();
         }
     }
