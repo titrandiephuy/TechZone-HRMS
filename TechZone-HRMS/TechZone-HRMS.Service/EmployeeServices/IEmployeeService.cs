@@ -13,6 +13,7 @@ namespace TechZone_HRMS.Service.EmployeeServices
     {
         Task<IEnumerable<EmployeeDetail>> GetEmployees();
         Task<ActionResult<EmployeeDetail>> GetEmployeeById(int id);
+        Task<EmployeeDetail> GetEmployeeByIdd(int id);
         Task<ActionResult<Result>> EditEmployee(EditEmployee editEmployee);
         Task<ActionResult<Result>> CreateEmployee(CreateEmployee createEmployee);
         Task<IActionResult> DeleteEmployee(int id);
