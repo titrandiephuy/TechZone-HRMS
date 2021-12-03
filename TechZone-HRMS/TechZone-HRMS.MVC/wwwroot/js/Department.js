@@ -2,7 +2,7 @@
 var apiUrl = "https://localhost:5001/api/DepartmentAPI";
 department.showData = function () {
     $.ajax({
-        url: apiUrl,
+        url: "https://localhost:5004/Department/Get",
         method: "GET",
         datatype: "json",
         success: function (data) {

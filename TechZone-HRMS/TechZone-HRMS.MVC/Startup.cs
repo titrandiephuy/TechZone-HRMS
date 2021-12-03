@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using TechZone_HRMS.Domain;
 using TechZone_HRMS.Service.DepartmentServices;
 using TechZone_HRMS.Service.EmployeeServices;
+using TechZone_HRMS.Service.SalaryServices;
 
 namespace TechZone_HRMS.MVC
 {
@@ -31,6 +32,7 @@ namespace TechZone_HRMS.MVC
             services.AddDbContext<EmployeesManagementContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EmployeesManagementDbConnection")));
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<ISalaryService, SalaryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
