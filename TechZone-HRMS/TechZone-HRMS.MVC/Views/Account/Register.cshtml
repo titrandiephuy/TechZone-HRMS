@@ -1,0 +1,44 @@
+﻿@model TechZone_HRMS.Domain.Models.Account.Register
+@{
+    ViewData["Title"] = "Register";
+}
+
+<form role="form" method="post" asp-controller="Account" asp-action="Register">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label>Employee Id</label>
+        <input asp-for="EmployeeId" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="User name">
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>User Name</label>
+        <input asp-for="UserName" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="User name">
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input asp-for="Password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Repeat Password</label>
+        <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" aria-label="Password" aria-describedby="Confirm Password">
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <div class="form-group text-center">
+        <button class="btn btn-primary account-btn" type="submit">Register</button>
+    </div>
+    <div class="account-footer">
+        <p>Already have an account? <a asp-controller="Account" asp-action="Login">Login</a></p>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
