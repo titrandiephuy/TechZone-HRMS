@@ -46,10 +46,10 @@ namespace TechZone_HRMS.API.Controllers
             return await salaryService.EditSalary(editSalary);
         }
 
-        [HttpGet("GetSalaryDetailById/{id}")]
-        public async Task<ActionResult<SalaryDetail>> GetSalaryDetailById(int id)
+        [HttpGet("GetSalaryDetailById/{employeeId}/{id}")]
+        public async Task<ActionResult<SalaryDetail>> GetSalaryDetailById( int id)
         {
-            return await salaryService.GetSalaryDetailById(id);
+            return await salaryService.GetSalaryDetailById( id);
         }
     }
 }
