@@ -23,6 +23,7 @@ namespace TechZone_HRMS.MVC.Controllers
         private static EmployeeDetail employee = new EmployeeDetail();
 
         // GET: /<controller>/
+        //push
         public SalaryController(ISalaryService salaryService, IEmployeeService employeeService, EmployeesManagementContext context )
         {
             this.salaryService = salaryService;
