@@ -1,4 +1,6 @@
-﻿@{ ViewData["Title"] = "Employee"; }
+﻿@{
+    ViewData["Title"] = "Employee";
+}
 <div class="content container-fluid">
 
     <!-- Page Header -->
@@ -11,32 +13,34 @@
                     <li class="breadcrumb-item active">Employee</li>
                 </ul>
             </div>
-            <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-                <div class="container">
-                    <form method="post" asp-controller="Employee" asp-action="ImportEmployee" enctype="multipart/form-data">
-                        <input type="file" name="file" />
-                        <button type="submit">Import</button>
-                    </form>
-                </div>
-            </div>
-            <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-                <div class="container">
-                    <form method="get" asp-controller="Employee" asp-action="ExportEmployee" enctype="multipart/form-data">
-                        <button type="submit">Export</button>
-                    </form>
-                </div>
-                <div class="container">
-                    <form method="get" asp-controller="Employee" asp-action="ExportPatternEmployee" enctype="multipart/form-data">
-                        <button type="submit">Export Pattern</button>
-                    </form>
-                </div>
-            </div>
             <div class="col-auto float-right ml-auto">
-                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+                <a href="javascript:;" class="btn add-btn" onclick="employee.openModal()"><i
+                        class="fa fa-plus"></i> Add Employee</a>
                 <div class="view-icons">
                     <a href="employees-list.html" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col">
+            <div class="btn-group btn-group-sm">
+                <form method="get" asp-controller="Employee" asp-action="ExportEmployee" enctype="multipart/form-data">
+                    <button class="btn btn-sm btn-white" type="submit">Export</button>
+                </form>
+                <form method="get" asp-controller="Employee" asp-action="ExportPatternEmployee"
+                    enctype="multipart/form-data">
+                    <button class="btn btn-sm btn-white" type="submit">Export Pattern</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-auto float-right ml-auto">
+            <form method="post" asp-controller="Employee" asp-action="ImportEmployee" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <button class="btn btn-sm btn-white" type="submit">Import</button>
+            </form>
+
         </div>
     </div>
     <!-- /Page Header -->
@@ -75,74 +79,102 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="formEmployee">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="firstName" name="firstName" data-msg-required="required">
+                                <input class="form-control" type="text" data-rule-required="true" id="firstName"
+                                    data-msg-required="required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Last Name</label>
-                                <input class="form-control" type="text" data-rule-required="true" id="lastName" name="lastName" data-msg-required="required">
+                                <input class="form-control" type="text" data-rule-required="true" id="lastName"
+                                    data-msg-required="required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Gender <span class="text-danger">*</span></label>
-                                <input type="checkbox" id="gender" class="form-group" data-msg-required="required" name="gender">
-                            </div>
-
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Phonenumber <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="employeePhoneNumber" name="employeePhoneNumber" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Email<span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="email" name="email" data-msg-required="required">
+                                <label class="col-form-label">Date of birth<span class="text-danger">*</span></label>
+                                <div class="cal-icon"><input class="form-control datetimepicker" type="text"
+                                        data-rule-required="true" id="dateOfBirth" data-msg-required="required"></div>
+                                <input type="hidden" id="employeeId" name="employeeId" value="0">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Address <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="employeeAddress" name="employeeAddress" data-msg-required="required">
+                                <input class="form-control" type="text" data-rule-required="true" id="employeeAddress"
+                                    data-msg-required="required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Date of birth <span class="text-danger">*</span></label>
-                                <input class="form-control" type="date" data-rule-required="true" id="dateOfBirth" name="dateOfBirth" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group ">
-                                <label class="col-form-label">Place of origin <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="placeOfOrigin" name="placeOfOrigin" data-msg-required="required">
+                                <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                                <input class="form-control" type="email" data-rule-required="true" id="email"
+                                data-msg-required="required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Ethnicity<span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="ethnicity" name="ethnicity" data-msg-required="required">
+                                <label class="col-form-label">Place of origin</label>
+                                <input class="form-control" type="text" data-rule-required="true" id="placeOfOrigin"
+                                    data-msg-required="required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Avatar<span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="employeeAvatar" name="employeeAvatar" data-msg-required="required">
+                                <label class="col-form-label">Avatar</label>
+                                <input class="form-control" type="text" id="employeeAvatar"
+                                >
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Department <span class="text-danger">*</span></label>
-                                <select class="select" id="departmentId" name="departmentId">
-                                    <option>Department Name</option>
+                                <label class="col-form-label">Ethnicity</label>
+                                <input class="form-control" type="text" data-rule-required="true" id="ethnicity"
+                                    data-msg-required="required">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
+                                <div class="cal-icon"><input class="form-control datetimepicker" type="text"
+                                        id="joinDate"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Phone </label>
+                                <input class="form-control" type="text" data-rule-required="true"
+                                    id="employeePhoneNumber" data-msg-required="required">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Gender</label>
+                                <select class="select" id="gender">
+                                    <option value="true">Male</option>
+                                    <option value="false">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Status</label>
+                                <select class="select" id="employeeStatus">
+                                    <option value="true">Active</option>
+                                    <option value="false">Not Active</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Department <span class="text-danger">*</span></label>
+                                <select class="select" id="departmentId">
+                                    <option value="0">Select Department</option>
                                     <option value="1">Human Resources</option>
                                     <option value="2">Marketing</option>
                                     <option value="3">Finance</option>
@@ -153,171 +185,31 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Education</label>
-                            </div>
-                            <div class="form-group">
-                                <select class="select" id="educationLevelId" name="educationLevelId">
-                                    <option>Education level</option>
-                                    <option value="1">College Information Technology</option>
-                                    <option value="2">University Information Technology</option>
-                                    <option value="3">College Economic</option>
-                                    <option value="4">University Economic</option>
-                                    <option value="5">College Human Resource Management</option>
-                                    <option value="3">University Human Resource Management</option>
-                                    <option value="4">College Finance and Banking</option>
-                                    <option value="5">University Finance and Banking</option>
+                                <label class="col-form-label">Education Level<span class="text-danger">*</span></label>
+                                <select class="select" id="educationLevelId">
+                                    <option value="0">Select Education Level</option>
+                                    <option value="1">College/ Information Technology</option>
+                                    <option value="2">University/ Information Technology</option>
+                                    <option value="3">College/ Economic</option>
+                                    <option value="4">University/ Economic</option>
+                                    <option value="5">College/ Human Resource Management</option>
+                                    <option value="6">University/ Human Resource Management</option>
+                                    <option value="7">College/ Finance and Banking</option>
+                                    <option value="8">University/ Finance and Banking</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" id="employeeStatus" class="form-check-input" data-msg-required="required" name="employeeStatus"> Status
-                            </label>
-                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
                     </div>
                 </form>
-                <div class="submit-section">
-                    <a href="javascript:;" onclick="employee.save()" id="btnSave" class="btn btn-primary submit-btn">Submit</a>
-                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- /Add Employee Modal -->
 
-<!-- Edit Employee Modal -->
-<div id="edit_employee" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Employee</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="firstName" name="firstName" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Last Name</label>
-                                <input class="form-control" type="text" data-rule-required="true" id="lastName" name="lastName" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Gender <span class="text-danger">*</span></label>
-                                <input type="checkbox" id="gender" class="form-check-input" data-msg-required="required" name="gender">
-                            </div>
-
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Phonenumber <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="employeePhoneNumber" name="employeePhoneNumber" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Email<span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="email" name="email" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Address <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="employeeAddress" name="employeeAddress" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Date of birth <span class="text-danger">*</span></label>
-                                <input class="form-control" type="date" data-rule-required="true" id="dateOfBirth" name="dateOfBirth" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group ">
-                                <label class="col-form-label">Place of origin <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="placeOfOrigin" name="placeOfOrigin" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Ethnicity<span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="ethnicity" name="ethnicity" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Avatar<span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" data-rule-required="true" id="employeeAvatar" name="employeeAvatar" data-msg-required="required">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Departmen</label>
-                            </div>
-                            <div class="form-group">
-                                <select class="select" id="departmentId" name="departmentId">
-                                    <option>Department Name</option>
-                                    <option value="1">Human Resources</option>
-                                    <option value="2">Marketing</option>
-                                    <option value="3">Finance</option>
-                                    <option value="4">Sales</option>
-                                    <option value="5">Technical</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Salary</label>
-                            </div>
-                            <div class="form-group">
-                                <select class="select" id="salaryId" name="salaryId">
-                                    <option>Basic Salary</option>
-                                    <option value="1">4.000.000</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Education</label>
-                            </div>
-                            <div class="form-group">
-                                <select class="select" id="educationLevelId" name="educationLevelId">
-                                    <option>Education level</option>
-                                    <option value="1">College Information Technology</option>
-                                    <option value="2">University Information Technology</option>
-                                    <option value="3">College Economic</option>
-                                    <option value="4">University Economic</option>
-                                    <option value="5">College Human Resource Management</option>
-                                    <option value="3">University Human Resource Management</option>
-                                    <option value="4">College Finance and Banking</option>
-                                    <option value="5">University Finance and Banking</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" id="employeeStatus" class="form-check-input" data-msg-required="required" name="employeeStatus"> Status
-                            </label>
-                        </div>
-                    </div>
-                </form>
-                <div class="submit-section">
-                    <a href="javascript:;" onclick="employee.save()" id="btnSave" class="btn btn-primary submit-btn">Submit</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Edit Employee Modal -->
 @section scripts{
-    <script src="~/js/Employee.js" asp-append-version="true"></script>
+<script src="~/js/Employee.js" asp-append-version="true"></script>
 }
