@@ -1,9 +1,9 @@
 ﻿var salary = {};
 var employeeId = 0;
-var apiUrl = "https://localhost:5001/api/SalaryAPI";
+var apiUrl = "https://localhost:44360/api/SalaryAPI";
 salary.showData = function () {
   $.ajax({
-    url: "https://localhost:5001/api/EmployeeAPI",
+      url: "https://localhost:44360/api/EmployeeAPI",
     method: "GET",
     datatype: "json",
     success: function (data) {
@@ -55,7 +55,7 @@ salary.showData = function () {
 salary.getSalarybyEmpId = function (id) {
   employeeId = id;
   $.ajax({
-    url: `https://localhost:5001/api/SalaryAPI/${id}`,
+      url: `https://localhost:44360/api/SalaryAPI/${id}`,
     method: "GET",
     success: function (data) {
       $("tbSalary thead").empty();

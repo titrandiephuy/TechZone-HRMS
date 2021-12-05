@@ -1,5 +1,5 @@
 var salary = {};
-var apiUrl = "https://localhost:5001/api/SalaryAPI";
+var apiUrl = "https://localhost:44360/api/SalaryAPI";
 
 salary.save = function() {
     if($('#formSalary').valid()) {
