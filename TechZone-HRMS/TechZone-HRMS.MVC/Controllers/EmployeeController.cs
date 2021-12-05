@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using TechZone_HRMS.Domain;
+using TechZone_HRMS.Service.DepartmentServices;
 using TechZone_HRMS.Service.EmployeeServices.EmployeeModel;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,10 +18,12 @@ namespace TechZone_HRMS.MVC.Controllers
     public class EmployeeController : Controller
     {
         private readonly EmployeesManagementContext context;
+        private readonly IDepartmentService departmentService;
 
-        public EmployeeController(EmployeesManagementContext context)
+        public EmployeeController(EmployeesManagementContext context, IDepartmentService departmentService)
         {
             this.context = context;
+            this.departmentService = departmentService;
         }
         // GET: /<controller>/
         public IActionResult Index()
