@@ -131,24 +131,7 @@ namespace TechZone_HRMS.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> ExportPatternEmployee()
         {
-            var data = (await context.Employees.Include(em => em.Department).Include(em => em.EducationLevel).ToListAsync()).Select(e => new CreateEmployee()
-            {
-                FirstName = e.FirstName,
-                LastName = e.LastName,
-                Gender = e.Gender,
-                EmployeePhoneNumber = e.EmployeePhoneNumber,
-                Email = e.Email,
-                EmployeeAddress = e.EmployeeAddress,
-                DateOfBirth = e.DateOfBirth,
-                PlaceOfOrigin = e.PlaceOfOrigin,
-                Ethnicity = e.Ethnicity,
-                JoinDate = e.JoinDate,
-                EmployeeAvatar = e.EmployeeAvatar,
-                DepartmentId = e.DepartmentId,
-                EducationLevelId = e.EducationLevelId,
-                EmployeeStatus = e.EmployeeStatus
-            }
-            );
+            var data = new List<CreateEmployee>();
             var stream = new MemoryStream();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage(stream))

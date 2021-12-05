@@ -24,6 +24,9 @@
                 </ul>
             </div>
             <div class="col-auto float-right ml-auto">
+                <a class="btn btn-white" asp-controller="salary" asp-action="ExportSalaryByEmployeeId" asp-route-empId="@employee.EmployeeId">Export</a>
+            </div>
+            <div class="col-auto float-right ml-auto">
                 <a class="btn add-btn" href="javascript:;" onclick="salary.openModal()"><i class="fa fa-plus"></i> Add Salary</a>
             </div>
         </div>
