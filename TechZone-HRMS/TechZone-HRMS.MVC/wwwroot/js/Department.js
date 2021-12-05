@@ -1,5 +1,5 @@
 ﻿var department = {};
-var apiUrl = "https://localhost:44360/api/DepartmentAPI";
+var apiUrl = "https://localhost:5001/api/DepartmentAPI";
 department.showData = function () {
     $.ajax({
         url: "https://localhost:44360/api/DepartmentAPI",

@@ -1,5 +1,5 @@
 ﻿var employee = {};
-var apiUrl = "https://localhost:44360/api/EmployeeAPI";
+var apiUrl = "https://localhost:5001/api/EmployeeAPI";
 employee.ShowData = function () {
     $.ajax({
         url: apiUrl,

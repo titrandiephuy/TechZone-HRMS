@@ -1,12 +1,11 @@
 var salary = {};
-var apiUrl = "https://localhost:44360/api/SalaryAPI";
-
+var apiUrl = "https://localhost:5001/api/SalaryAPI";
 salary.save = function() {
     if($('#formSalary').valid()) {
         if (Number($('#salaryId').val()) == 0) {
             let createSalObj = {
                 employeeId: $('#employeeId').val(),
-                labourContractSalaryId: $('#labourContractSalaryId').val(),
+                labourContractSalary: $('#labourContractSalary').val(),
                 monthsWorkday: $('#monthsWorkday').val(),
                 totalWorkday: $('#totalWorkday').val(),
                 lunchAllowance: $('#lunchAllowance').val(),
@@ -35,7 +34,7 @@ salary.save = function() {
             let updateSalObj = {
                 salaryId: Number($('#salaryId').val()),
                 employeeId: $('#employeeId').val(),
-                labourContractSalaryId: $('#labourContractSalaryId').val(),
+                labourContractSalary: $('#labourContractSalary').val(),
                 monthsWorkday: $('#monthsWorkday').val(),
                 totalWorkday: $('#totalWorkday').val(),
                 lunchAllowance: $('#lunchAllowance').val(),
@@ -67,7 +66,7 @@ salary.save = function() {
 salary.reset = function() {
     $('#salaryId').val(0),
     $('#employeeId').val(),
-    $('#labourContractSalaryId').val(""),
+    $('#labourContractSalary').val(""),
     $('#monthsWorkday').val(""),
     $('#totalWorkday').val(""),
     $('#lunchAllowance').val(""),
@@ -89,7 +88,7 @@ salary.getSalbySalId = function(id) {
         datatype: "json",
         success: function (data) {
             $('#employeeId').val(data.employeeId),
-            $('#labourContractSalaryId').val(data.labourContractSalaryId),
+            $('#labourContractSalary').val(data.labourContractSalaryId),
             $('#monthsWorkday').val(data.monthsWorkday),
             $('#totalWorkday').val(data.totalWorkday),
             $('#lunchAllowance').val(data.lunchAllowance),
