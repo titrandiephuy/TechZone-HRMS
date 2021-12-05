@@ -16,6 +16,6 @@ namespace TechZone_HRMS.Service.SalaryServices
         Task<IEnumerable<SalaryDetail>> GetSalary();
         Task<IEnumerable<Salary>> GetSalaryById(int id);
         Task<ActionResult<Result>> EditSalary(EditSalary editSalary);
-        Task<SalaryDetail> GetSalaryDetailById(int id);
+        Task<SalaryDetail> GetSalaryDetailById( int id);
     }
 }

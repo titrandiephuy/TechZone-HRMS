@@ -226,7 +226,7 @@ namespace TechZone_HRMS.Service.SalaryServices
             return await context.Salaries.Where(s => s.EmployeeId == id).ToListAsync();
         }
 
-        public async Task<SalaryDetail> GetSalaryDetailById(int id)
+        public async Task<SalaryDetail> GetSalaryDetailById( int id)
         {
             var salary = await context.Salaries.FirstOrDefaultAsync(sa => sa.SalaryId == id);
             if (salary == null)
