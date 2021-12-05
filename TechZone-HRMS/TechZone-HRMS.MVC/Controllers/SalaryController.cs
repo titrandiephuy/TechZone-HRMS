@@ -38,11 +38,13 @@ namespace TechZone_HRMS.MVC.Controllers
             return View(data);
         }
         [HttpGet]
-        [Route("/Salary/Payslip/{empId}/{salId}")]
-        public async Task<IActionResult> Payslip(int salId, int empId)
+        [Route("/Salary/Payslip/{salId}")]
+        public async Task<IActionResult> Payslip(int salId)
         {
-            var data = await salaryService.GetSalaryById(empId);
-            return View(data.Where(sal => sal.SalaryId == salId));
+            var data = await salaryService.GetSalaryDetailById(salId);
+            var employee =  employeeService.GetEmployeeById(data.EmployeeId).Result.Value;
+            ViewBag.Employee = employee;
+            return View(data);
         }
     }
 }
